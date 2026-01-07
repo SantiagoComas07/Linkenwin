@@ -40,6 +40,7 @@ const dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: '.env' });
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    app.enableCors();
     const config = new swagger_1.DocumentBuilder()
         .setTitle('Employability Platform API')
         .setDescription('API for managing vacancies and applications')
