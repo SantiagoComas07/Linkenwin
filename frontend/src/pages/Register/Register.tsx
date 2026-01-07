@@ -1,15 +1,18 @@
 import { Box, Button, Container, Paper, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { register as registerApi } from '../../api/axios.api';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = async (data: any) => {
         try {
             const result = await registerApi(data);
             console.log('Register successful:', result);
-            alert('Register successful');
+            alert('Register successful! Please login.');
+            navigate('/login');
         } catch (error) {
             console.error('Register failed:', error);
             alert('Register failed');

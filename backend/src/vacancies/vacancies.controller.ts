@@ -29,6 +29,11 @@ export class VacanciesController {
         return this.vacanciesService.findAll();
     }
 
+    @Get(':id')
+    findOne(@Param('id') id: string) {
+        return this.vacanciesService.findOne(id);
+    }
+
     @Patch(':id/status')
     @Roles(UserRole.GESTOR, UserRole.ADMIN)
     updateStatus(@Param('id') id: string, @Body('isActive') isActive: boolean) {

@@ -1,15 +1,18 @@
 import { Box, Button, Container, Paper, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { login } from '../../api/axios.api';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
     const onSubmit = async (data: any) => {
         try {
             const result = await login(data);
             console.log('Login successful:', result);
-            alert('Login successful');
+            // alert('Login successful'); // Removed alert for smoother UX
+            navigate('/dashboard');
         } catch (error) {
             console.error('Login failed:', error);
             alert('Login failed');
